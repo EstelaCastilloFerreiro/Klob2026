@@ -22,7 +22,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
@@ -34,10 +33,7 @@ export default defineConfig({
   server: {
     port: 5000,
     host: true,
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
-    },
+    allowedHosts: true,
   },
   preview: {
     port: 5000,
