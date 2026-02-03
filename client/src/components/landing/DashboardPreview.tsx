@@ -29,12 +29,12 @@ export function DashboardPreview() {
           transition={{ duration: 0.6 }}
           className="relative"
         >
-          <div className="relative rounded-xl overflow-hidden border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 shadow-2xl">
-            <img 
-              src="/images/analytics-dashboard.png"
-              alt="Vista previa del dashboard de KLOB Analytics"
-              className="w-full h-auto"
-            />
+          <div className="relative rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+            <div className="aspect-video bg-gradient-to-br from-purple-50/50 via-stone-50/30 to-white dark:from-gray-900 dark:to-gray-950 flex items-center justify-center">
+              <div className="text-gray-400 dark:text-gray-600 text-lg font-light">
+                {t.dashboard.preview}
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

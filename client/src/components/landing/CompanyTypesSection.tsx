@@ -48,7 +48,7 @@ export function CompanyTypesSection() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-stone-50/30 via-white to-yellow-50/20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-950 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-stone-50/30 via-white to-purple-50/20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-950 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="mb-12"
@@ -126,12 +126,12 @@ export function CompanyTypesSection() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div className="bg-white dark:bg-gray-900 rounded-lg p-8 border-2 border-yellow-200 dark:border-yellow-900/30 shadow-lg mb-8">
+            <div className="bg-white dark:bg-gray-900 rounded-lg p-8 border-2 border-purple-200 dark:border-purple-900/30 shadow-lg mb-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900/20 flex items-center justify-center">
-                  <CheckCircle className="h-6 w-6 text-yellow-700 dark:text-yellow-300" />
+                <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center">
+                  <CheckCircle className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-yellow-700 dark:text-yellow-300">
+                <h3 className="text-2xl font-bold text-purple-600 dark:text-purple-400">
                   {t.companyTypes.after.title}
                 </h3>
               </div>
@@ -155,11 +155,11 @@ export function CompanyTypesSection() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-yellow-100 dark:border-yellow-900/20 hover:border-yellow-300 dark:hover:border-yellow-800/50 transition-all duration-300 hover:shadow-lg"
+                      className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-purple-100 dark:border-purple-900/20 hover:border-purple-300 dark:hover:border-purple-800/50 transition-all duration-300 hover:shadow-lg"
                     >
                       <div className="flex items-start gap-4 mb-4">
-                        <div className="w-10 h-10 rounded-lg bg-yellow-100 dark:bg-yellow-900/20 flex items-center justify-center flex-shrink-0">
-                          <Icon className="h-5 w-5 text-yellow-700 dark:text-yellow-300" />
+                        <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center flex-shrink-0">
+                          <Icon className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                         </div>
                         <div className="flex-1">
                           <h5 className="font-bold text-gray-900 dark:text-white mb-2 text-sm">
@@ -171,7 +171,7 @@ export function CompanyTypesSection() {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="text-yellow-700 dark:text-yellow-300 hover:text-yellow-700 dark:hover:text-yellow-300 p-0 h-auto text-xs font-medium"
+                            className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 p-0 h-auto text-xs font-medium"
                           >
                             {t.companyTypes.seeMore}
                             <ArrowRight className="ml-1 h-3 w-3" />

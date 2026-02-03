@@ -10,37 +10,11 @@ Key capabilities include multi-file upload with automatic structure detection, c
 
 Preferred communication style: Simple, everyday language.
 
-**Brand Colors** (Updated Nov 14, 2025): Blue (#3b82f6) and vibrant lemon yellow (#fde047) with WCAG-compliant contrast implementation:
-- Primary: Blue (#3b82f6) for main brand elements
-- Secondary: Vibrant lemon yellow (#fde047) for backgrounds, accents, and decorative elements - more pure yellow tone
-- Text on light backgrounds: Yellow-700 (#a16207) achieving 4.5:1 contrast ratio
-- Text on dark backgrounds: Yellow-300 (#fef08a) for proper visibility
-- Icons: Yellow-600 for balanced visibility
-- All amber-* utility classes eliminated, unified yellow palette throughout
-- CSS custom properties updated to HSL(48 96% 64%) for consistent lemon yellow across all components
-
 ## System Architecture
-
-### Deployment Strategy (Updated Nov 13, 2025)
-
-**Current Setup**: Full-stack Express + Vite application (Autoscale deployment)
-- **Development**: `npm run dev` (Express server with Vite middleware on port 5000)
-- **Build**: `npm run build` (builds frontend + backend for production)
-- **Production**: `npm start` (serves compiled Express app)
-- **Status**: ✅ Fully functional with all features (Analytics, Forecasting, Sentiment Analysis)
-- **Custom Domain**: klob.tech ready for configuration (nameservers at dns-parking.com)
-
-**Alternative: Static Deployment** (Landing page only - 100% free)
-- If you only need the landing page without backend features:
-  1. Remove backend from package.json scripts
-  2. Configure Vite build output to `dist/`
-  3. Deploy as Static site on Replit
-- **Cost**: $0/month for hosting (no compute charges), only $0.10/GB for data transfer
-- **Limitation**: Backend features (Analytics, Forecasting, Sentiment) would not work
 
 ### Frontend Architecture
 
-**Framework**: React 18 with TypeScript and Vite (port 5000 for Replit compatibility).
+**Framework**: React 18 with TypeScript and Vite.
 **UI/UX**: Radix UI primitives with shadcn/ui components, inspired by Carbon/Ant Design for data-heavy B2B SaaS. Features a custom dark/light mode, Inter font for UI, and JetBrains Mono for numerical data. Tailwind CSS is used for layout.
 **State Management**: React Context API for global state, TanStack Query for server state and caching.
 **Routing**: Wouter with restructured routes - `/` for public landing page, `/login` for authentication, `/app/*` for authenticated application routes (analytics, forecasting, sentiment, upload).
@@ -54,16 +28,16 @@ Preferred communication style: Simple, everyday language.
 - **LandingNav**: Fixed navigation with smooth scrolling, language switcher, and login/demo CTAs
 **Key Components**: `AppSidebar`, `FileUpload`, `FilterSidebar`, `DashboardTabs`, `KPICard`, `SentimentAnalysis`, and a section-aware `Chatbot`. Includes various charting components for sales, transfers, units by size, warehouse entries, sentiment distribution, and topic analysis, with expandable chart functionality.
 
-### Backend Architecture (Legacy - Not Active in Static Deployment)
+### Backend Architecture
 
-**Framework**: Express.js with TypeScript (removed for static deployment).
+**Framework**: Express.js with TypeScript.
 **API Design**: RESTful HTTP endpoints for file upload, dashboard data, filter options, various charts, forecast job management, sentiment analysis, and chatbot queries.
 **File Processing Pipeline**: Utilizes Multer for uploads, XLSX for column detection, automatic mapping of Spanish headers, and transformation into normalized schemas (Ventas, Productos, Traspasos). Client-specific configurations are stored for repeat uploads.
 **Data Processing Services**: `excelProcessor.ts`, `kpiCalculator.ts`, advanced forecasting system (`seasonalForecasting.ts`, `advancedForecasting.ts`, `ensembleForecasting.ts`), and `chatbotService.ts` provide modular business logic.
 **Advanced Forecasting Engine**: Production-ready ML ensemble combining 4 algorithms (Weighted Moving Average, Linear Regression with R², Holt-Winters Double Exponential Smoothing, Prophet-like Decomposition). Features automatic data cleaning with IQR outlier detection, feature engineering (price elasticity, trend scores, size distributions), temporal cross-validation for accuracy measurement, and intelligent ensemble weighting by historical MAPE (with epsilon = 0.01 to handle perfect models). Delivers predictions with comprehensive metrics (MAPE, MAE, RMSE) for transparent model performance evaluation. **Improved Coverage System (Nov 9, 2025)**: Achieved ~58-60% product coverage (up from 17.8%) through: (1) Relaxed sales filter from 5 to 2 units, (2) Hierarchical fallback using family/theme averages for low-volume products (1-2 units), (3) Enhanced validation supporting 2+ years of data with 5-fold cross-validation and hold-out method for 2-year series, (4) Adaptive model requirements (advanced models require 3+ years, basic models 2+). **Confidence System**: Three-tier classification (Alta ≥70%, Media ≥50%, Baja ≥30%) based on historical MAPE and data years, with conservative MAPE estimation (70% for simple averages, dynamic calculation for family fallbacks). Ensemble uses adaptive weighting (1/(MAPE+ε)) where models with lower error receive proportionally higher weight, and selection thresholds ensure quality forecasts.
 **Storage Strategy**: Interface-based design (`IStorage`) supporting both in-memory development storage and persistent database storage.
 
-### Data Storage Solutions (Legacy - Not Active in Static Deployment)
+### Data Storage Solutions
 
 **Database**: PostgreSQL 17.6 on Easypanel (external infrastructure), using standard `pg` driver with `drizzle-orm/node-postgres`.
 **Storage Strategy**: DatabaseStorage implementation (migrated from in-memory MemStorage Nov 8, 2025) providing permanent data persistence across server restarts.
@@ -73,8 +47,8 @@ Preferred communication style: Simple, everyday language.
 
 ### Authentication and Authorization
 
-**Current State**: Demo mode with localStorage-based authentication for static deployment.
-**Architecture Preparation**: Multi-tenant data model with `clientId` foreign keys and session infrastructure ready for future backend implementation.
+**Current State**: Demo mode with client ID passed in the upload request.
+**Architecture Preparation**: Multi-tenant data model with `clientId` foreign keys and session infrastructure ready for future implementation.
 
 ## External Dependencies
 
