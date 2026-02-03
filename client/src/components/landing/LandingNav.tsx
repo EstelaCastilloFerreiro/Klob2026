@@ -63,7 +63,7 @@ export function LandingNav() {
                 {t.nav.results}
               </button>
               <button
-                onClick={() => setLocation("/faq")}
+                onClick={() => scrollToSection("faq")}
                 className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors text-xs sm:text-sm"
                 data-testid="button-nav-faq"
               >
@@ -80,7 +80,7 @@ export function LandingNav() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setLocation("/login")}
+              onClick={() => setSignupOpen(true)}
               data-testid="button-nav-login"
               className="font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 text-xs sm:text-sm px-2 sm:px-3"
             >
