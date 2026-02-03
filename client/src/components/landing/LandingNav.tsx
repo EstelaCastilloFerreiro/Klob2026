@@ -5,11 +5,13 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/i18n";
 import { motion } from "framer-motion";
 import { KLOBLogo } from "@/components/KLOBLogo";
+import { SignupForm } from "./SignupForm";
 
 export function LandingNav() {
   const { t } = useLanguage();
   const [, setLocation] = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [signupOpen, setSignupOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,57 +37,83 @@ export function LandingNav() {
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <KLOBLogo className="h-8 w-auto" />
-            <div className="hidden md:flex items-center gap-8">
+          <div className="flex items-center gap-3 sm:gap-6 md:gap-8">
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="cursor-pointer"
+              data-testid="button-logo-home"
+            >
+              <KLOBLogo className="h-6 sm:h-7 md:h-8 w-auto" />
+            </button>
+            <div className="hidden md:flex items-center gap-4 lg:gap-8">
               <button
-                onClick={() => scrollToSection("features")}
-                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors text-sm"
-                data-testid="button-nav-features"
-              >
-                {t.nav.companies}
-              </button>
-              <button
-                onClick={() => scrollToSection("about")}
-                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors text-sm"
+                onClick={() => scrollToSection("nosotros")}
+                className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors text-xs sm:text-sm"
                 data-testid="button-nav-about"
               >
                 {t.nav.about}
               </button>
               <button
-                onClick={() => scrollToSection("pricing")}
-                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors text-sm"
-                data-testid="button-nav-pricing"
+                onClick={() => scrollToSection("resultados")}
+                className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors text-xs sm:text-sm"
+                data-testid="button-nav-results"
               >
-                {t.nav.resources}
+                {t.nav.results}
+              </button>
+              <button
+                onClick={() => setLocation("/faq")}
+                className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors text-xs sm:text-sm"
+                data-testid="button-nav-faq"
+              >
+                <span className="hidden lg:inline">{t.nav.faq}</span>
+                <span className="lg:hidden">{t.nav.faqShort}</span>
               </button>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <LanguageSwitcher />
+          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-4">
+            <div className="hidden sm:block">
+              <LanguageSwitcher />
+            </div>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setLocation("/login")}
               data-testid="button-nav-login"
-              className="font-medium text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
+              className="font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 text-xs sm:text-sm px-2 sm:px-3"
             >
-              {t.nav.login}
+              <span className="hidden sm:inline">{t.nav.login}</span>
+              <span className="sm:hidden">Entrar</span>
             </Button>
-            <Button
-              size="sm"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-none"
-              onClick={() => setLocation("/login")}
-              data-testid="button-nav-demo"
+            <div 
+              style={{ 
+                background: 'linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd, #bfdbfe, #dbeafe)',
+                borderRadius: '9999px',
+                padding: '1.5px',
+                display: 'inline-block'
+              }}
             >
-              {t.nav.createAccount}
-            </Button>
+              <Button
+                size="sm"
+                className="bg-white dark:bg-gray-950 hover:bg-blue-50 dark:hover:bg-blue-950/30 font-medium text-black dark:text-white text-xs sm:text-sm px-3 sm:px-4"
+                style={{ 
+                  borderRadius: '9999px',
+                  border: 'none'
+                }}
+                onClick={() => setSignupOpen(true)}
+                data-testid="button-nav-demo"
+              >
+                <span className="hidden sm:inline">{t.nav.createAccount}</span>
+                <span className="sm:hidden">Demo</span>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
+
+      <SignupForm open={signupOpen} onOpenChange={setSignupOpen} />
     </motion.nav>
   );
 }

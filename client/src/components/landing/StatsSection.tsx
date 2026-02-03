@@ -36,7 +36,7 @@ export function StatsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-5xl md:text-6xl font-bold text-purple-600 dark:text-purple-400 mb-4">
+              <div className="text-5xl md:text-6xl font-bold text-yellow-700 dark:text-yellow-300 mb-4">
                 {stat.number}
               </div>
               <p className="text-gray-600 dark:text-gray-400 font-light">

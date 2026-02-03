@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { BarChart3, Brain, Database, Zap, MessageSquare, DollarSign, ArrowRight } from "lucide-react";
+import { BarChart3, Brain, Database, Zap, MessageSquare, DollarSign } from "lucide-react";
 import { useLanguage } from "@/i18n";
-import { Button } from "@/components/ui/button";
 
 export function AICapabilitiesSection() {
   const { t } = useLanguage();
@@ -64,27 +63,19 @@ export function AICapabilitiesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-purple-100 dark:border-purple-900/20 hover:border-purple-300 dark:hover:border-purple-800/50 transition-all duration-300 hover:shadow-lg"
+                className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-yellow-100 dark:border-yellow-900/20 hover:border-yellow-300 dark:hover:border-yellow-800/50 transition-all duration-300 hover:shadow-lg"
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center flex-shrink-0">
-                    <Icon className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                  <div className="w-12 h-12 rounded-lg bg-yellow-100 dark:bg-yellow-900/20 flex items-center justify-center flex-shrink-0">
+                    <Icon className="h-6 w-6 text-yellow-700 dark:text-yellow-300" />
                   </div>
                   <div className="flex-1">
                     <h5 className="font-bold text-gray-900 dark:text-white mb-2">
                       {capability.title}
                     </h5>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
                       {capability.description}
                     </p>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 p-0 h-auto text-sm font-medium"
-                    >
-                      {t.companyTypes.seeMore}
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </Button>
                   </div>
                 </div>
               </motion.div>
